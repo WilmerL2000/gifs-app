@@ -21,6 +21,13 @@ export class GifsService {
     return [...this._tagsHistory];
   }
 
+  /**
+   * The `organizeHistory` function takes a tag as input, converts it to lowercase, removes any
+   * occurrences of the tag from the `_tagsHistory` array, adds the tag to the beginning of the array,
+   * keeps only the first 10 elements of the array, and saves the updated array to local storage.
+   * @param {string} tag - The `tag` parameter is a string that represents a tag to be organized in the
+   * history.
+   */
   private organizeHistory(tag: string): void {
     tag = tag.toLowerCase();
 
@@ -35,6 +42,9 @@ export class GifsService {
 
   }
 
+  /* The `saveLocalStorage()` function is responsible for saving the `_tagsHistory` array to the
+  browser's local storage. It uses the `localStorage.setItem()` method to store the array as a string
+  with the key 'history'. */
   private saveLocalStorage(): void {
     localStorage.setItem('history', JSON.stringify(this._tagsHistory));
   }
@@ -50,6 +60,13 @@ export class GifsService {
 
   }
 
+  /**
+   * The searchTag function takes a tag as input, organizes the search history, and makes an HTTP request
+   * to retrieve a list of GIFs based on the tag.
+   * @param {string} tag - The `tag` parameter is a string that represents the search tag for the GIFs.
+   * It is used to search for GIFs related to the specified tag.
+   * @returns a Promise of type `void`.
+   */
   public async searchTag(tag: string): Promise<void> {
 
     if (tag.length === 0) return;
